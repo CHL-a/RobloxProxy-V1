@@ -26,6 +26,11 @@ WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 		res.statusMessage = 'OK'
 		res.body = cURL.get(url).body
 	end
+end).onRequest('/', 'GET', function (_, _, res)
+	res.success = true
+	res.statusCode = 200
+	res.statusMessage = 'OK'
+	res.body = 'Roblox proxy home page, nothing to show, see CHL-a on github'
 end).onInvalidRequest(function (client, req, res)
 	res.statusCode = 404
 	res.statusMessage = 'Bad request'
