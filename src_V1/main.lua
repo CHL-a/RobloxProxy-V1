@@ -15,7 +15,7 @@ WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 	res.headers.connection = 'close'
 	res.body = 'Bad Request: correct webpage, conditional failed'
 
-	local authKey = req.headers['Proxy-AuthKey']
+	local authKey = req.headers['Proxy-Auth-Key']
 	local url = req.headers['Proxy-Url']
 	
 	print(Static.table.toString(req))
