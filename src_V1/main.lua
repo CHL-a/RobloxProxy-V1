@@ -15,13 +15,18 @@ WebServer.onRequest('/rproxy', 'GET', function(client, req, res)
 	res.headers.connection = 'close'
 	res.body = 'bad request idk'
 
-	local authKey = req.headers['X-Auth-Key']
-
+	local authKey = req.headers['Proxy-AuthKey']
+	local url = req.headers['Proxy-Url']
 	print(
 		Static.table.toString(req)
 	)
+	local a = url:match '^http://[%w]-%.roblox%.com'
+	print(a)
 
-	if not authKey or authKey == Environment.get 'authKey' then
+	if (not authKey or authKey == Environment.get 'authKey') 
+		and (a)
+	
+	then
 		do return end
 
 		res.success = true
