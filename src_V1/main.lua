@@ -21,10 +21,10 @@ WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 	local check = Environment.get 'authKey'
 
 	print(Static.table.toString(req), authKey, check, check == authKey)
-	print(url:match '^http://[%w]-%.roblox%.com')
+	print(url:match '^https://[%w]-%.roblox%.com')
 
 	if (not authKey or authKey == Environment.get 'authKey') 
-		and (url:match '^http://[%w]-%.roblox%.com') then
+		and (url:match '^https://[%w]-%.roblox%.com') then
 
 			print('met')
 
