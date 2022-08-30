@@ -13,7 +13,7 @@ WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 	res.statusCode = 404
 	res.statusMessage = 'Bad request'
 	res.headers.connection = 'close'
-	res.body = 'bad request idk'
+	res.body = 'Bad Request: correct webpage, conditional failed'
 
 	local authKey = req.headers['Proxy-AuthKey']
 	local url = req.headers['Proxy-Url']
@@ -35,7 +35,7 @@ end).onInvalidRequest(function (client, req, res)
 	res.statusCode = 404
 	res.statusMessage = 'Bad request'
 	res.headers.connection = 'close'
-	res.body = 'bad request idk'
+	res.body = 'Bad Request: unknown webpage'
 end)
 
 -- always last step
