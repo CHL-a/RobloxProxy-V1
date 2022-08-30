@@ -9,7 +9,7 @@ local Environment = require('Environment')
 -- let our domain be `https://google.com`
 
 -- client sent http request to home, being `google.com`
-WebServer.onRequest('/rproxy', 'GET', function(client, req, res)
+WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 	res.statusCode = 404
 	res.statusMessage = 'Bad request'
 	res.headers.connection = 'close'
@@ -21,7 +21,7 @@ WebServer.onRequest('/rproxy', 'GET', function(client, req, res)
 		Static.table.toString(req)
 	)
 	local a = url:match '^http://[%w]-%.roblox%.com'
-	print(a)
+	print(a, url)
 
 	if (not authKey or authKey == Environment.get 'authKey') 
 		and (a)
