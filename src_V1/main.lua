@@ -17,22 +17,14 @@ WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 
 	local authKey = req.headers['Proxy-AuthKey']
 	local url = req.headers['Proxy-Url']
-	print(
-		Static.table.toString(req)
-	)
-	local a = url:match '^http://[%w]-%.roblox%.com'
-	print(a, url)
-
-	if (not authKey or authKey == Environment.get 'authKey') 
-		and (a)
 	
-	then
-		do return end
+	if (not authKey or authKey == Environment.get 'authKey') 
+		and (url:match '^http://[%w]-%.roblox%.com') then
 
 		res.success = true
 		res.statusCode = 200
 		res.statusMessage = 'OK'
-		res.body = cURL.get('').body
+		res.body = cURL.get(url).body
 	end
 end).onInvalidRequest(function (client, req, res)
 	res.statusCode = 404
