@@ -12,7 +12,9 @@ Webservice for Roblox Servers to use roblox domains.
 |           | variable `authKey`, or can be left blank if the      |
 |           | environment variable is blank                        |
 | Url       | Refers to the target url, must have prefix,          |
-|           | `https://roblox.com`. Sub-Domains are okay.          |
+|           | `https://roblox.com`. Sub-Domains are okay. In the   |
+|           | case where the url contains strange symbols, the     |
+|           | server will also accept a URL encoded string.        |
 +-----------+------------------------------------------------------+
 ```
    - Code example

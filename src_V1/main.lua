@@ -16,8 +16,14 @@ WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 	res.body = 'Bad Request: correct webpage, conditional failed'
 
 	local authKey = req.headers['Proxy-Auth-Key']
+	---@type string
 	local url = req.headers['Proxy-Url']
-	
+	url = url:gsub('%%%x%x', function (a)
+		return string.char(
+			assert(tonumber('0x' .. a:sub(2)))
+		)
+	end)
+
 	if (not authKey or authKey == Environment.get 'authKey') 
 		and (url:match '^https://[%w]-%.roblox%.com') then
 		---TODO: check validity of response of res.body
