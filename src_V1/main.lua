@@ -10,6 +10,7 @@ local Environment = require('Environment')
 
 -- client sent http request to home, being `google.com`
 WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
+	-- v1
 	res.statusCode = 404
 	res.statusMessage = 'Bad request'
 	res.headers.connection = 'close'
@@ -50,4 +51,15 @@ end).onInvalidRequest(function (client, req, res)
 	res.statusMessage = 'Bad request'
 	res.headers.connection = 'close'
 	res.body = 'Bad Request: unknown webpage'
+
+	local webPage = Static.string.split(
+		req.webPage,
+		'/'
+	)
+
+	print(
+		Static.table.toString(webPage)
+)
+
+
 end).launch()
