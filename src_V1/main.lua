@@ -18,15 +18,21 @@ WebServer.onRequest('/robloxproxy', 'GET', function(client, req, res)
 	local authKey = req.headers['Proxy-Auth-Key']
 	local url = req.headers['Proxy-Url']
 	
-	local check = Environment.get 'authKey'
-
 	if (not authKey or authKey == Environment.get 'authKey') 
 		and (url:match '^https://[%w]-%.roblox%.com') then
 		---TODO: check validity of response of res.body
-		res.success = true
-		res.statusCode = 200
-		res.statusMessage = 'OK'
-		res.body = cURL.get(url).body
+		local resA = cURL.get(url)
+
+		if resA.success then
+			res.success = true
+			res.statusCode = 200
+			res.statusMessage = 'OK'
+			res.body = resA.body
+		else
+			res.body = ('Bad request: conditional success, '
+				.. 'http roblox request failed: response struct: %s'
+				):format(Static.table.toString(resA))
+		end
 	end
 end).onRequest('/', 'GET', function (_, _, res)
 	res.success = true
@@ -38,7 +44,4 @@ end).onInvalidRequest(function (client, req, res)
 	res.statusMessage = 'Bad request'
 	res.headers.connection = 'close'
 	res.body = 'Bad Request: unknown webpage'
-end)
-
--- always last step
-.launch()
+end).launch()
