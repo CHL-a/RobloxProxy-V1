@@ -1,2 +1,6 @@
-# WebService-Observation-Quest
-This project is mainly an implementation and observation quest of how webservices work. This is not meant to be a full-on web framework, but feel free to use project.
+# RobloxProxy-V1
+Webservice for Roblox Servers to use roblox domains.
+## Notes: 
+ - Use [replit](https://replit.com)
+ - Optionally, you can set an evnironment variable called `authKey` for access restrictions.
+ - For Roblox Servers, the (...)
