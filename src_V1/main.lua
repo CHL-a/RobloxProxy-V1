@@ -79,7 +79,7 @@ end).onInvalidRequest(function (client, req, res)
 		return
 	end
 
-	local url = ('https://%s.roblox.com'):format(
+	local url = ('https://%s.roblox.com%s'):format(
 		webPage[4],
 		table.concat(webPage, '/', 5, #webPage)
 	)
