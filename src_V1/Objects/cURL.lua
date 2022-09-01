@@ -210,7 +210,8 @@ function cURL.serverResponse.fromString(s)
 	-- first line: HTTPVERSION STATUSCODE STATUSMESSAGE
 	-- http version
 	local temp = tempStringParser.popUntil(' ')
-	object.httpVersion = assert(temp)
+	object.httpVersion =
+		assert(temp, 'missing http version: full: ' .. s)
 
 	-- status code
 	temp = tempStringParser.popUntil' '
