@@ -58,9 +58,7 @@ end).onInvalidRequest(function (client, req, res)
 		true
 	)
 
-	print(req.webPage,
-		Static.table.toString(webPage))
-
+	-- pre
 	if not (webPage[2] == 'robloxproxy' and webPage[3] == 'v2') then
 		return
 	end
@@ -79,14 +77,24 @@ end).onInvalidRequest(function (client, req, res)
 		return
 	end
 
-	local url = ('https://%s.roblox.com%s'):format(
+	local url = ('https://%s.roblox.com/%s'):format(
 		webPage[4],
 		table.concat(webPage, '/', 5, #webPage)
 	)
 
-	print(url)
+	local resA = cURL.get(url)
 
-	-- local resA = cURL.get(url)
+	if not resA.success then
+		res.statusCode = 400
+		res.body = 'Http Request from Url gave bad '
+			.. 'server response: '
+			.. Static.table.toString(resA)
+		return
+	end
 
-
+	-- main
+	res.statusCode = 200
+	res.success = true
+	res.statusMessage = 'OK'
+	res.body = resA.body
 end).launch()
