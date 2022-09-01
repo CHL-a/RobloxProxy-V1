@@ -54,10 +54,11 @@ end).onInvalidRequest(function (client, req, res)
 
 	local webPage = Static.string.split(
 		req.webPage,
-		'/'
+		'/',
+		true
 	)
 
-	print(
+	print(req.webPage,
 		Static.table.toString(webPage)
 )
 
