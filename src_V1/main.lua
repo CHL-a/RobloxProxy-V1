@@ -52,7 +52,7 @@ end).onInvalidRequest(function (client, req, res)
 
 	local resA = cURL.get(url)
 
-	if not resA.success then
+	if not (resA.success or resA.statusCode == 302) then
 		res.statusCode = 400
 		res.body = 'Http Request from Url gave bad '
 			.. 'server response: '
