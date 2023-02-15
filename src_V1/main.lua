@@ -50,9 +50,12 @@ end).onInvalidRequest(function (client, req, res)
 		table.concat(webPage, '/', 5, #webPage)
 	)
 
+	---@type cURL.ServerResponse
 	local resA = cURL.get(url)
 
-	if not (resA.success or resA.statusCode == 302) then
+	if math.floor(resA.statusCode) == 3 then
+		print(resA.toString)
+	elseif not (resA.success) then
 		res.statusCode = 400
 		res.body = 'Http Request from Url gave bad '
 			.. 'server response: '
