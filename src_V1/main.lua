@@ -54,9 +54,8 @@ end).onInvalidRequest(function (client, req, res)
 	local resA = cURL.get(url)
 
 	if math.floor(resA.statusCode/100) == 3 then
-		while math.floor(resA.statusCode/100) == 3 do
-			resA = cURL.get(resA.headers.location)
-		end
+---@diagnostic disable-next-line: undefined-field
+		resA.body = resA.headers.location
 	elseif not (resA.success) then
 		res.statusCode = 400
 		res.body = 'Http Request from Url gave bad '
