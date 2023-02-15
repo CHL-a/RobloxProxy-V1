@@ -53,8 +53,10 @@ end).onInvalidRequest(function (client, req, res)
 	---@type cURL.ServerResponse
 	local resA = cURL.get(url)
 
-	if math.floor(resA.statusCode) == 3 then
-		print(resA.toString)
+	if math.floor(resA.statusCode/100) == 3 then
+		while math.floor(resA.statusCode/100) == 3 do
+			resA = cURL.get(resA.headers.location)
+		end
 	elseif not (resA.success) then
 		res.statusCode = 400
 		res.body = 'Http Request from Url gave bad '
