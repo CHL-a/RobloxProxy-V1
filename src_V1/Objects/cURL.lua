@@ -1,3 +1,5 @@
+
+
 ---@meta
 
 ---@class cURL @runs bash command cURL
@@ -236,7 +238,7 @@ function cURL.serverResponse.fromString(s)
 
 		tempStringParser.pop()
 
-		local value = tempStringParser.popUntil('\n')
+		local value = tempStringParser.popUntil('\r\n')
 		assert(value)
 
 		object.headers[index] = value
