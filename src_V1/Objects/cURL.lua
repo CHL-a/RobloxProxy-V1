@@ -234,6 +234,8 @@ function cURL.serverResponse.fromString(s)
 		local index = tempStringParser.popUntil(':', true)
 		assert(index)
 
+		tempStringParser.pop()
+
 		local value = tempStringParser.popUntil('\n')
 		assert(value)
 
